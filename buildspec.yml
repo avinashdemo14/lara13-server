@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+
+  install:
+    runtime-versions:
+      php: 8.3
+
+    commands:
+      - echo "Checking PHP version"
+      - php -v
+
+      - echo "Checking Composer version"
+      - composer --version
+
+  pre_build:
+    commands:
+      - echo "Installing Laravel dependencies"
+      - composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+
+  build:
+    commands:
+      - echo "Laravel build completed"
+      - php artisan --version
+
+  post_build:
+    commands:
+      - echo "Preparing deployment artifacts"
+
+artifacts:
+  files:
+    - '**/*'
