@@ -2,19 +2,19 @@
 
 set -e
 
-cd /var/www/lara13-server
+APP_DIR=/var/www/lara13-server
 
 echo "After Install Started"
 
 echo "Setting Laravel permissions"
 
-sudo chown -R www-data:www-data /var/www/lara13-server
-
-sudo chmod -R 775 storage
-sudo chmod -R 775 bootstrap/cache
+sudo chown -R ubuntu:ubuntu $APP_DIR
+sudo chmod -R 775 $APP_DIR/storage
+sudo chmod -R 775 $APP_DIR/bootstrap/cache
 
 echo "Clearing Laravel Caches"
 
+cd $APP_DIR
 php artisan config:clear
 php artisan route:clear
 php artisan view:clear
